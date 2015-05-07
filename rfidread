@@ -1,0 +1,58 @@
+import binascii
+import serial
+import time
+
+device = serial.Serial("/dev/ttyUSB0", 9600)
+
+while True:
+#	instring = device.read(device.inWaiting())
+	instring = device.read(20)
+	outstring = ""
+#	if len(device.read(device.inWaiting()))> 0:
+#		print(device.read(device.inWaiting()))
+	cntln = len(instring)
+	if cntln > 0:
+#		print(cntln)
+#		if cntln > 20:
+#			x=0
+#			y=20
+#			while (x < cntln):
+#				print("in while")
+#				instring = binascii.hexlify(bytearray(instring[x:y]))
+#	                        if instring == "cc690410320d01e20090596210016824001f98f6":
+#	                                print("Card 1-1")
+#	                        if instring == "cc690410320d01e2001069691900802200306a5e":
+#	                                print("Card 2-1")
+#	                        if instring == "cc690410320d01e200106969190077170066c4e2":
+#	                                print("Card 3-1")
+#				x+=20
+#				y+=20
+
+#		for item in instring.split():
+#		for itm in instring:
+#			if itm.isdigit():
+#				outstring += chr(int(itm))
+#			if itm.isalpha():
+#				outstring += itm	
+#		print(outstring) # important to indent this line
+#		for itm in instring.split():
+#			print(itm)
+		
+#		else:
+#		print("Out while")
+		instring = binascii.hexlify(bytearray(instring))
+#		if instring == "cc690410320d01e20090596210016824001f98f6":
+#			print("Card 1")
+#		if instring == "cc690410320d01e2001069691900802200306a5e":
+#			print("Card 2")
+#		if instring == "cc690410320d01e200106969190077170066c4e2":
+#			print("Card 3")
+		print(instring)
+#			print(len(instring))
+	time.sleep(1)  # important to indent this line
+
+# press return here to execute the while loop
+# control C to abort while loop
+
+device.write("ver")
+device.read(20)
